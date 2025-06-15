@@ -1,0 +1,13 @@
+.btn {
+    color: var(--main);
+    padding: 12px 38px;
+    border-radius: 12px;
+    border: 1px solid #3470ff;
+    display: block;
+    margin: 0 auto;
+    margin-top: 80px;
+    font-weight: 600;
+    font-size: var(font-size-base);
+    line-height: 125%;
+    border-color: transparent;
+}

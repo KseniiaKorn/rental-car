@@ -1,0 +1,9 @@
+.wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.select {
+    font-family: "Manrope", sans-serif;
+    line-height: 1.25;
+}
