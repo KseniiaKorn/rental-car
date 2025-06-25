@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Formik, Form, Field } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectBrands, selectFilters } from '../../redux/selectors';
@@ -6,12 +6,17 @@ import s from './Filter.module.css';
 import CustomSelect from '../CustomSelect/CustomSelect';
 import { resetItems, upDatePage } from '../../redux/slice';
 import { getCars } from '../../redux/operations';
+import { fetchBrands } from '../../redux/filters/operations';
 
 const prices = [30, 40, 50, 60, 70, 80, 90, 100];
 
 const Filter = () => {
   const dispatch = useDispatch();
   const brands = useSelector(selectBrands) || [];
+
+  useEffect(() => {
+    dispatch(fetchBrands());
+  }, [dispatch]);
 
   const initialValues = {
     brand: '',

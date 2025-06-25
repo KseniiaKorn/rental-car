@@ -1,11 +1,25 @@
-.cardList {
-    max-width: calc((100% - 96px) / 4);
+.cardContainer {
+    position: relative;
 }
 
 .img{
     width: 100%;
     border-radius: 14px;
     margin-bottom: 16px;
+}
+
+.favoriteBtn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+}
+
+.heartIcon {
+    transition: fill 0.3s ease;
 }
 
 .cardHeader {
@@ -37,7 +51,7 @@
     display: flex;
     flex-direction: column;
     gap: 4px;
-    margin-bottom: 32px;
+    margin-bottom: 28px;
 }
 
 .cardDetails {
@@ -47,6 +61,25 @@
     font-weight: 400;
     font-size: 12px;
     line-height: 133%;
+}
+
+.cardDetailItem {
+    position: relative;
+}
+
+.cardDetailItem::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    right: -6px;
+    width: 1px;
+    height: 16px;
+    background-color: var(--gray-light);
+}
+
+.lastEl::after {
+    display: none;
 }
 
 .readMoreLink {
@@ -61,4 +94,9 @@
     font-weight: 600;
     font-size: var(--font-size-base);
     line-height: 125%;
+}
+
+.readMoreLink:hover,
+.readMoreLink:focus {
+    background-color: var(--button-hover);
 }

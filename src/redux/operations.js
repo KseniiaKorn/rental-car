@@ -13,7 +13,10 @@ export const getCars = createAsyncThunk(
             if (minMileage !== undefined) params.minMileage = minMileage;
             if (maxMileage !== undefined) params.maxMileage = maxMileage;
             const response = await axios.get('/cars', { params });
-            return response.data;
+            return {
+                cars: response.data.cars,
+                totalPages: response.data.totalPages,
+            };
         } catch (error) {
             return thunkAPI.rejectWithValue(error.message);
         }

@@ -2,6 +2,8 @@ import React from 'react';
 import s from './LoadMore.module.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { selectFilters, selectPage, selectTotalPages } from '../../redux/selectors';
+import { getCars } from '../../redux/operations';
+import { upDatePage } from '../../redux/slice';
 
 const LoadMore = () => {
     const dispatch = useDispatch();
