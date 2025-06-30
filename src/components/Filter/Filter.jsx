@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
 import { Formik, Form, Field } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectBrands, selectFilters } from '../../redux/selectors';
+import { selectBrands} from '../../redux/selectors';
 import s from './Filter.module.css';
 import CustomSelect from '../CustomSelect/CustomSelect';
 import { resetItems, upDatePage } from '../../redux/slice';
 import { getCars } from '../../redux/operations';
 import { fetchBrands } from '../../redux/filters/operations';
+import { setFilters } from '../../redux/filters/slice';
 
 const prices = [30, 40, 50, 60, 70, 80, 90, 100];
 
@@ -17,6 +18,7 @@ const Filter = () => {
   useEffect(() => {
     dispatch(fetchBrands());
   }, [dispatch]);
+
 
   const initialValues = {
     brand: '',
@@ -31,7 +33,7 @@ const Filter = () => {
     const minMileage = values.mileageFrom || '';
     const maxMileage = values.mileageTo || '';
 
-    dispatch(selectFilters({ brand, rentalPrice, minMileage, maxMileage }));
+    dispatch(setFilters({ brand, rentalPrice, minMileage, maxMileage }));
     dispatch(resetItems());
     dispatch(upDatePage(1));
     dispatch(getCars({ brand, rentalPrice, minMileage, maxMileage, page: 1 }));

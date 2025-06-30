@@ -5,28 +5,25 @@ import s from './CustomSelect.module.css';
 const customStyles = {
     control: (provided, state) => ({
         ...provided,
-        backgroundColor: '#f7f7f7;',
+        backgroundColor: '#f7f7f7',
         borderRadius: '12px',
         padding: '12px 16px',
         fontSize: '16px',
         fontWeight: 500,
-        // minHeight: 'auto',
         boxShadow: 'none',
         cursor: 'pointer',
         height: '44px',
         border: 'none',
+        textAlign: 'left',
     }),
     option: (provided, state) => ({
         ...provided,
-        backgroundColor: state.isSelected
-            ? '#3470FF'
-            : state.isFocused
-                ? '#E5E5E5'
-                : '#FFFFFF',
-        color: state.isSelected ? '#FFFFFF' : '#8d929a',
+        backgroundColor: state.isFocused ? '#E5E5E5' : '#FFFFFF',
+        color: state.isSelected ? '#101828' : '#8d929a',
         padding: '10px 16px',
         fontSize: '16px',
         cursor: 'pointer',
+        textAlign: 'left',
     }),
     menu: (provided) => ({
         ...provided,
@@ -42,7 +39,7 @@ const customStyles = {
     }),
     singleValue: (provided) => ({
         ...provided,
-        color: '#8d929a',
+        color: '#101828',
     }),
     dropdownIndicator: (provided, state) => ({
         ...provided,
