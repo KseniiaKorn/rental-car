@@ -53,7 +53,14 @@ const customStyles = {
     }),
 };
 
-const CustomSelect = ({ name, options, value, onChange, onBlur, placeholder }) => {
+const CustomSelect = ({ name, options, value, onChange, onBlur, placeholder }) => 
+{
+  const formatOptionLabel = ({ value, label }, { context }) => {
+    if (name === 'price') {
+      return context === 'menu' ? label : `To $${label}`;
+    }
+    return label;
+  };
     return (
         <div className={s.wrapper}>
             <Select
@@ -67,6 +74,7 @@ const CustomSelect = ({ name, options, value, onChange, onBlur, placeholder }) =
                 className={s.select}
                 classNamePrefix="react-select"
                 isSearchable={false}
+                formatOptionLabel={formatOptionLabel}
             />
         </div>
     );

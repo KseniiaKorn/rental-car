@@ -1,15 +1,49 @@
 import React, { useEffect } from 'react';
-import { Formik, Form, Field } from 'formik';
+import { Formik, Form } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectBrands} from '../../redux/selectors';
-import s from './Filter.module.css';
-import CustomSelect from '../CustomSelect/CustomSelect';
+import { selectBrands } from '../../redux/selectors';
 import { resetItems, upDatePage } from '../../redux/slice';
 import { getCars } from '../../redux/operations';
 import { fetchBrands } from '../../redux/filters/operations';
 import { setFilters } from '../../redux/filters/slice';
+import CustomSelect from '../CustomSelect/CustomSelect';
+import s from './Filter.module.css';
+import { useFormikContext } from 'formik';
+
 
 const prices = [30, 40, 50, 60, 70, 80, 90, 100];
+
+const formatNumber = (num) => {
+  if (!num) return '';
+  return Number(num).toLocaleString('en-US');
+};
+
+const MileageInput = ({ name, placeholder }) => {
+  const { values, setFieldValue } = useFormikContext();
+  const rawValue = values[name];
+
+  const handleChange = (e) => {
+    const numericValue = e.target.value.replace(/[^\d]/g, '');
+    setFieldValue(name, numericValue);
+  };
+
+  const formatted = rawValue ? formatNumber(rawValue) : '';
+
+  return (
+    <input
+      type="text"
+      name={name}
+      placeholder={placeholder}
+      value={
+        name === 'mileageFrom'
+          ? (formatted ? `From ${formatted}` : '')
+          : (formatted ? `To ${formatted}` : '')
+      }
+      onChange={handleChange}
+      className={s.input}
+    />
+  );
+};
 
 const Filter = () => {
   const dispatch = useDispatch();
@@ -18,7 +52,6 @@ const Filter = () => {
   useEffect(() => {
     dispatch(fetchBrands());
   }, [dispatch]);
-
 
   const initialValues = {
     brand: '',
@@ -46,7 +79,6 @@ const Filter = () => {
     <Formik initialValues={initialValues} onSubmit={handleSubmit}>
       {({ values, setFieldValue, handleBlur }) => (
         <Form className={s.form}>
-
           <div className={s.fieldGroup}>
             <label htmlFor="brand" className={s.label}>Car brand</label>
             <CustomSelect
@@ -74,22 +106,8 @@ const Filter = () => {
           <div className={s.fieldGroup}>
             <label htmlFor="mileageFrom" className={s.label}>Car mileage / km</label>
             <div className={s.mileageGroup}>
-              <Field
-                type="number"
-                name="mileageFrom"
-                id="mileageFrom"
-                placeholder="From"
-                className={s.input}
-                min="0"
-              />
-              <Field
-                type="number"
-                name="mileageTo"
-                id="mileageTo"
-                placeholder="To"
-                className={s.input}
-                min="0"
-              />
+              <MileageInput name="mileageFrom" placeholder="From" />
+              <MileageInput name="mileageTo" placeholder="To" />
             </div>
           </div>
 
