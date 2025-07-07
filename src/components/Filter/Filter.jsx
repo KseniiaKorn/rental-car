@@ -60,6 +60,14 @@ const Filter = () => {
     mileageTo: '',
   };
 
+  const handleResetForm = (resetForm, dispatch) => {
+    resetForm();
+    dispatch(setFilters({}));
+    dispatch(resetItems());
+    dispatch(upDatePage(1));
+    dispatch(getCars({ brand: '', rentalPrice: '', minMileage: '', maxMileage: '', page: 1 }));
+  };
+
   const handleSubmit = (values) => {
     const brand = values.brand?.value || '';
     const rentalPrice = values.price?.value || '';
@@ -77,7 +85,7 @@ const Filter = () => {
 
   return (
     <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-      {({ values, setFieldValue, handleBlur }) => (
+      {({ values, setFieldValue, handleBlur, resetForm }) => (
         <Form className={s.form}>
           <div className={s.fieldGroup}>
             <label htmlFor="brand" className={s.label}>Car brand</label>
@@ -112,6 +120,13 @@ const Filter = () => {
           </div>
 
           <button type="submit" className={s.btn}>Search</button>
+          <button
+            type="button"
+            className={s.btnReset}
+            onClick={() => handleResetForm(resetForm, dispatch)}
+          >
+            Reset
+          </button>
         </Form>
       )}
     </Formik>

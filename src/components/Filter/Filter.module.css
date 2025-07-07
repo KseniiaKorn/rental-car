@@ -4,7 +4,7 @@
     justify-content: center;
     align-items: flex-end;
     margin: 152px auto 0px;
-    width: 924px;
+    width: 1100px;
 }
 
 .label {
@@ -56,37 +56,8 @@
     border-bottom-left-radius: 0;
 }
 
-/* select.input {
-    padding-right: 14px;
-} */
-
-/* .icon {
-    position: absolute;
-    right: 16px;
-    top: 65%;
-    transform: translateY(-50%);
-    pointer-events: none;
-    width: 16px;
-    height: 16px;
-} */
-
-/* .iconDown {
-    background: url('/public/down.svg') no-repeat center center;
-    background-size: contain;
-} */
-
-/* .iconUp {
-    background: url('/public/up.svg') no-repeat center center;
-    background-size: contain;
-} */
-
-/* .select {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-} */
-
-.btn {
+.btn,
+.btnReset {
     background-color: var(--button);
     color: var(--white);
     font-weight: 600;
@@ -104,3 +75,9 @@
 .btn:focus {
     background-color: var(--button-hover);
 }
+
+.btnReset:hover,
+.btnReset:focus {
+    background-color: var(--button-hover);
+}
+
